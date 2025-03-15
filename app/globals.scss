@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #232732;
+  --primary-100: #24272c;
+  --red-1: #fd6442;
+  --purple-1: #7733ff;
+  --yellow-1: #f7a21e;
+  --linear-gradient-primary: linear-gradient(90deg, var(--red-1), var(--purple-1), var(--yellow-1));
+  /* --linear-gradient-primary-red: linear-gradient(90deg, var(--red-1),  var(--primary)); */
+  --linear-gradient-primary-red: linear-gradient(10deg, #f6854c 0%, var(--red-1) 100%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-100: var(--primary-100);
+  --color-red-1: var(--red-1);
+  --color-purple-1: var(--purple-1);
+  --color-yellow-1: var(--yellow-1);
+  --font-chakraPetch: var(--font-chakraPetch);
+  --drop-shadow-white: 0 35px 35px rgba(255, 255, 255, 0.25);
+}
+
+body {
+  background: var(--foreground);
+  color: white;
+  font-family: var(--font-montserrat);
+}
+
+@layer base {
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}
+
+@layer components {
+  .navbar {
+    @apply drop-shadow-white relative bg-black/50;
+    border-radius: 50px;
+    padding: 1px; /* Space for the border */
+  }
+
+  .navbar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit; /* Ensures the border radius matches */
+    padding: 1px; /* Border width */
+    background: var(--linear-gradient-primary);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}
+
+@layer utilities {
+  h1 {
+    @apply text-[96px] font-bold;
+  }
+  h3 {
+    @apply text-[64px] font-bold;
+  }
+  h4 {
+    @apply text-[48px] font-bold;
+  }
+
+  .btn-bg-linear {
+    background: var(--linear-gradient-primary-red);
+  }
+}
