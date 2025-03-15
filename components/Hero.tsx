@@ -1,5 +1,12 @@
+'use client'
 /* eslint-disable jsx-a11y/media-has-caption */
+import dynamic from 'next/dynamic'
 import React from 'react'
+
+const LazyVoxelDog = dynamic(() => import('./VoxelDog'), {
+  ssr: false,
+  loading: () => <div>Loading Lazy</div>,
+})
 
 const Hero = () => {
   return (
@@ -38,6 +45,10 @@ const Hero = () => {
               </span>
             </div>
           </div>
+        </div>
+
+        <div className='absolute bottom-0'>
+          <LazyVoxelDog />
         </div>
       </div>
     </section>
