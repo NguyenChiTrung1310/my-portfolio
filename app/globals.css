@@ -3,6 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #232732;
+  --primary-100: #24272c;
+  --red-1: #d32d20;
+  --purple-1: #7733ff;
+  --yellow-1: #f7a21e;
 }
 
 @theme inline {
@@ -10,6 +15,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-primary:         
+;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +27,7 @@
 }
 
 body {
-  background: var(--background);
+  background: var(--primary);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
