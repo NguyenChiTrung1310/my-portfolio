@@ -1,53 +1,42 @@
 'use client'
-import {motion, useMotionValueEvent, useScroll} from 'motion/react'
-import {useState} from 'react'
+
+import Link from 'next/link'
+import {usePathname} from 'next/navigation'
+import React from 'react'
+import {HiChatBubbleBottomCenterText, HiEnvelope, HiHome, HiRectangleGroup, HiUser, HiViewColumns} from 'react-icons/hi2'
 
 import {cn} from '@/lib/utils'
 
-import {Button} from './ui/button'
-
-const MotionBtn = motion(Button)
+export const navData = [
+  {name: 'home', path: '/', icon: <HiHome />},
+  {name: 'about', path: '/about', icon: <HiUser />},
+  {name: 'services', path: '/services', icon: <HiRectangleGroup />},
+  {name: 'work', path: '/work', icon: <HiViewColumns />},
+  {
+    name: 'testimonials',
+    path: '/testimonials',
+    icon: <HiChatBubbleBottomCenterText />,
+  },
+  {
+    name: 'contact',
+    path: '/contact',
+    icon: <HiEnvelope />,
+  },
+]
 
 const Navbar = () => {
-  const {scrollY} = useScroll()
-  const [hidden, setHidden] = useState<boolean>(false)
-
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    const previous = scrollY.getPrevious()
-    if (previous && latest > previous && latest > 120) setHidden(true)
-    else setHidden(false)
-  })
+  const pathname = usePathname()
 
   return (
-    <motion.nav
-      variants={{
-        visible: {y: 0},
-        hidden: {y: '-138%'},
-      }}
-      animate={hidden ? 'hidden' : 'visible'}
-      transition={{duration: 0.3, ease: 'easeInOut'}}
-      className='navbar fixed top-6 left-1/2 z-[9999] container mx-auto h-16 w-full -translate-x-1/2 transform px-6'
-    >
-      <div className='flex-between h-full gap-10'>
-        <ul className='flex items-center justify-end gap-24 font-medium'>
-          <li>Home</li>
-          <li>About</li>
-          <li>Lab</li>
-        </ul>
-
-        <div className='flex items-center gap-6'>
-          <div>Dark mode</div>
-          <MotionBtn
-            whileTap={{scale: 0.9}}
-            whileHover={{scale: 1.1}}
-            transition={{type: 'spring', stiffness: 400, damping: 10}}
-            className={cn(!hidden && 'drop-shadow-white', 'btn-bg-linear')}
-          >
-            Contact me
-          </MotionBtn>
-        </div>
+    <nav className='fixed top-0 bottom-0 z-50 mt-auto flex h-max w-full flex-col items-center gap-y-4 xl:right-[2%] xl:h-screen xl:w-16 xl:max-w-md xl:justify-center'>
+      <div className='flex h-[80px] w-full items-center justify-between gap-y-10 bg-white/10 px-4 py-8 text-3xl backdrop:blur-sm md:px-40 xl:h-max xl:flex-col xl:justify-center xl:rounded-full xl:px-0 xl:text-xl'>
+        {navData.map((link) => (
+          <Link className={cn(link.path === pathname && 'text-accent')} key={link.name} href={link.path}>
+            <div>{link.icon}</div>
+          </Link>
+        ))}
       </div>
-    </motion.nav>
+    </nav>
   )
 }
 

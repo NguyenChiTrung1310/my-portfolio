@@ -1,8 +1,8 @@
-import './globals.scss'
+import './globals.css'
 
 import ReactLenis from 'lenis/react'
 import type {Metadata} from 'next'
-import {Chakra_Petch, Montserrat} from 'next/font/google'
+import {Montserrat, Sora} from 'next/font/google'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -10,10 +10,10 @@ const montserrat = Montserrat({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
-const chakraPetch = Chakra_Petch({
+const sora = Sora({
   subsets: ['latin'],
-  variable: '--font-chakraPetch',
-  weight: ['400', '500', '600', '700'],
+  variable: '--font-sora',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
 })
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${montserrat.variable} ${chakraPetch.variable} antialiased`}>
+      <body className={`${montserrat.variable} ${sora.variable} antialiased`}>
         <ReactLenis root>{children}</ReactLenis>
       </body>
     </html>
