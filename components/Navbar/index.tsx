@@ -1,8 +1,10 @@
 'use client'
 
 import {AlignRight, X} from 'lucide-react'
-import {motion} from 'motion/react'
+import {AnimatePresence, motion} from 'motion/react'
 import {ReactNode, useState} from 'react'
+
+import Nav from './Nav'
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState<boolean>(false)
@@ -31,7 +33,9 @@ const Navbar = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div className='bg-primary relative h-[640px] w-[360px]' variants={menu} animate={isActive ? 'open' : 'closed'} initial='closed' />
+        <motion.div className='bg-primary relative h-[640px] w-[360px]' variants={menu} animate={isActive ? 'open' : 'closed'} initial='closed'>
+          <AnimatePresence>{isActive && <Nav />}</AnimatePresence>
+        </motion.div>
       </div>
     </nav>
   )
