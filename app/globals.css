@@ -3,39 +3,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #131424;
-  --primary-100: #24272c;
-  --secondary: #393a47;
-  --accent: #f13024;
-  --red-1: #fd6442;
-  --purple-1: #7733ff;
-  --yellow-1: #f7a21e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-primary: var(--primary);
-  --color-primary-100: var(--primary-100);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-red-1: var(--red-1);
-  --color-purple-1: var(--purple-1);
-  --color-yellow-1: var(--yellow-1);
   --font-sora: var(--font-sora);
-
-  --background-image-site: url('/images/site-bg.svg');
 }
 
 body {
-  font-family: var(--font-sora);
+  font-family: var(--font-montserrat);
 }
 
 @layer base {
   body {
-    @apply bg-secondary overflow-hidden leading-relaxed text-white;
+    @apply bg-foreground overflow-hidden leading-relaxed text-white;
   }
 
   .flex-between {
