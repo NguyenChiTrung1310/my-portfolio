@@ -12,25 +12,26 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='w-full'>
-      <div className='flex items-center justify-between'>
-        <div>Left</div>
-        <div>Center</div>
-        <div className='fixed top-6 right-6'>
-          <div className='absolute top-0 right-0 z-10 h-10 w-10 cursor-pointer overflow-hidden rounded-full'>
-            <motion.div className='relative h-full w-full' animate={{top: isActive ? '-100%' : '0%'}} transition={{duration: 0.5, type: 'tween', ease: [0.76, 0, 0.24, 1]}}>
-              <div className='slider-text' onClick={toggleMenu}>
-                <PerspectiveText icon={<AlignRight />} label='Menu' />
-              </div>
+    <nav className='w-full pb-[72px]'>
+      <div className='fixed top-4 right-4'>
+        <motion.div
+          whileHover={{
+            width: 120,
+          }}
+          className='absolute top-0 right-0 z-10 h-14 w-14 cursor-pointer overflow-hidden rounded-full'
+        >
+          <motion.div className='relative h-full w-full' animate={{top: isActive ? '-100%' : '0%'}} transition={{duration: 0.5, type: 'tween', ease: [0.76, 0, 0.24, 1]}}>
+            <div className='slider-text' onClick={toggleMenu}>
+              <PerspectiveText icon={<AlignRight />} label='Menu' />
+            </div>
 
-              <div className='slider-text' onClick={toggleMenu}>
-                <PerspectiveText icon={<X />} label='Close' />
-              </div>
-            </motion.div>
-          </div>
+            <div className='slider-text' onClick={toggleMenu}>
+              <PerspectiveText icon={<X />} label='Close' />
+            </div>
+          </motion.div>
+        </motion.div>
 
-          <motion.div className='bg-primary relative h-[640px] w-[360px] rounded-3xl' variants={menu} animate={isActive ? 'open' : 'closed'} initial='closed' />
-        </div>
+        <motion.div className='bg-primary relative h-[640px] w-[360px]' variants={menu} animate={isActive ? 'open' : 'closed'} initial='closed' />
       </div>
     </nav>
   )
@@ -40,8 +41,7 @@ const PerspectiveText = ({icon, label}: {icon: ReactNode; label: string}) => {
   return (
     <div className='perspective-icon'>
       <div className='icon'>{icon}</div>
-
-      <div className='icon'>{icon}</div>
+      <div className='icon'>{label}</div>
     </div>
   )
 }
@@ -52,14 +52,16 @@ const menu = {
     height: '650px',
     top: '-12px',
     right: '-12px',
+    borderRadius: '24px',
     transition: {duration: 0.75, type: 'tween', ease: [0.76, 0, 0.24, 1]},
   },
 
   closed: {
-    width: '40px',
-    height: '40px',
+    width: '56px',
+    height: '56px',
     top: '0px',
     right: '0px',
+    borderRadius: '50px',
     transition: {duration: 0.75, delay: 0.35, type: 'tween', ease: [0.76, 0, 0.24, 1]},
   },
 }
