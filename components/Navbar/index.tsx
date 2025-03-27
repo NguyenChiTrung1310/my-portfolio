@@ -20,7 +20,7 @@ const Navbar = () => {
           whileHover={{
             width: 120,
           }}
-          className='absolute top-0 right-0 z-10 h-14 w-14 cursor-pointer overflow-hidden rounded-full'
+          className='absolute top-0 right-0 z-10 h-12 w-12 cursor-pointer overflow-hidden rounded-full'
         >
           <motion.div className='relative h-full w-full' animate={{top: isActive ? '-100%' : '0%'}} transition={{duration: 0.5, type: 'tween', ease: [0.76, 0, 0.24, 1]}}>
             <div className='slider-text' onClick={toggleMenu}>
@@ -54,18 +54,18 @@ const menu = {
   open: {
     width: '360px',
     height: '650px',
-    top: '-12px',
-    right: '-12px',
-    borderRadius: '24px',
+    top: '-8px',
+    right: '-8px',
+    borderRadius: '32px',
     transition: {duration: 0.75, type: 'tween', ease: [0.76, 0, 0.24, 1]},
   },
 
   closed: {
-    width: '56px',
-    height: '56px',
+    width: '48px',
+    height: '48px',
     top: '0px',
     right: '0px',
-    borderRadius: '50px',
+    borderRadius: '32px',
     transition: {duration: 0.75, delay: 0.35, type: 'tween', ease: [0.76, 0, 0.24, 1]},
   },
 }
