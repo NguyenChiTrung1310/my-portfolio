@@ -30,6 +30,8 @@ const eslintConfig = [
       '@typescript-eslint/no-empty-function': 'off',
       'no-prototype-builtins': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'jsx-a11y/no-static-element-interactions': 'off',
       // "react-hooks/exhaustive-deps": "off",
       'no-empty': 'off',
       'react/prop-types': 'off',
