@@ -21,9 +21,9 @@ export const menuVariants = {
 export const perspectiveVariants = {
   initial: {
     opacity: 0,
-    rotateX: 120,
+    rotateX: 90,
     translateY: 90,
-    translateX: -40,
+    translateX: -90,
   },
   enter: (i: number) => ({
     opacity: 1,
@@ -32,9 +32,9 @@ export const perspectiveVariants = {
     translateX: 0,
     transition: {
       duration: 0.65,
-      delay: 0.5 + i * 0.1,
+      delay: 0.4 + i * 0.1,
       ease: [0.215, 0.61, 0.355, 1],
-      opacity: {duration: 0.35, delay: 0.4},
+      opacity: {duration: 0.4, delay: 0.4},
     },
   }),
   exit: {

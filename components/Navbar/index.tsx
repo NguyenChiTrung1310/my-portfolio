@@ -35,7 +35,7 @@ const Navbar = () => {
         </motion.div>
 
         <motion.div className='bg-primary relative h-[640px] w-[480px]' variants={menuVariants} animate={isActive ? 'open' : 'closed'} initial='closed'>
-          <AnimatePresence>{isActive && <Nav />}</AnimatePresence>
+          <AnimatePresence>{isActive && <Nav toggleMenu={toggleMenu} />}</AnimatePresence>
         </motion.div>
       </div>
     </nav>

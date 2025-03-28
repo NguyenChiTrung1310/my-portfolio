@@ -1,7 +1,8 @@
 export const links = [
-  {title: 'About Me', href: '/', description: 'Learn more about my journey and experiences'},
-  {title: 'Projects', href: '/', description: 'Discover my latest works and contributions'},
-  {title: 'Expertise', href: '/', description: 'Explore my skills and professional strengths'},
+  {title: 'Home', href: '/', description: 'Back to home'},
+  {title: 'About Me', href: '/about-me', description: 'Learn more about my journey and experiences'},
+  {title: 'Projects', href: '/projects', description: 'Discover my latest works and contributions'},
+  {title: 'Expertise', href: '/expertise', description: 'Explore my skills and professional strengths'},
 ]
 
 export const footerLinks = [

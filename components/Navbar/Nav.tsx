@@ -1,14 +1,21 @@
+import {Dot} from 'lucide-react'
 import {motion, useAnimate} from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import {usePathname} from 'next/navigation'
 import React, {useRef} from 'react'
 
 import {footerLinks, links} from './data'
 import {perspectiveVariants, slideInVariants} from './motion'
 
+interface Props {
+  toggleMenu: () => void
+}
+
 type NavLinkType = {title: string; href: string; description: string}
 
-const NavLink = ({link, index}: {link: NavLinkType; index: number}) => {
+const NavLink = ({link, index, toggleMenu}: {link: NavLinkType; index: number} & Props) => {
+  const pathname = usePathname()
   const [scope, animate] = useAnimate()
   const outer = useRef(null)
   const inner = useRef(null)
@@ -38,19 +45,26 @@ const NavLink = ({link, index}: {link: NavLinkType; index: number}) => {
       ref={scope}
       className='nav-link-container group flex-center cursor-pointer border-t border-white py-3 perspective-[120px] perspective-origin-bottom'
     >
-      <motion.div custom={index} variants={perspectiveVariants} initial='initial' animate='enter' exit='exit' className='w-full'>
-        <Link className='text-4xl font-medium text-white no-underline' href={link.href}>
-          {link.title}
-        </Link>
+      <Link onClick={toggleMenu} className='w-full text-4xl font-medium text-white no-underline' href={link.href}>
+        <motion.div custom={index} variants={perspectiveVariants} initial='initial' animate='enter' exit='exit' className='w-full'>
+          <span className='flex items-center'>
+            {link.title}{' '}
+            {pathname === link.href && (
+              <span>
+                <Dot className='h-14 w-14' />
+              </span>
+            )}
+          </span>
 
-        <div ref={outer} className='pointer-events-none absolute flex h-full w-full overflow-hidden'>
-          <div ref={inner} className='absolute top-full flex h-full bg-black whitespace-nowrap'>
-            {[...Array(2)].map((_, index) => {
-              return <SliderContent key={`content_${index}`} link={link} />
-            })}
+          <div ref={outer} className='pointer-events-none absolute flex h-full w-full overflow-hidden'>
+            <div ref={inner} className='absolute top-full flex h-full bg-black whitespace-nowrap'>
+              {[...Array(2)].map((_, index) => {
+                return <SliderContent key={`content_${index}`} link={link} />
+              })}
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </Link>
     </motion.div>
   )
 }
@@ -70,12 +84,12 @@ const SliderContent = ({link}: {link: NavLinkType}) => {
   )
 }
 
-const Nav = () => {
+const Nav: React.FC<Props> = ({toggleMenu}) => {
   return (
     <div className='box-border flex h-full flex-col justify-between pt-24 pr-10 pb-12 pl-10'>
       <div className='flex flex-col'>
         {links.map((link, i) => (
-          <NavLink key={`b_${i}`} link={link} index={i} />
+          <NavLink key={`b_${i}`} link={link} index={i} toggleMenu={toggleMenu} />
         ))}
       </div>
 
