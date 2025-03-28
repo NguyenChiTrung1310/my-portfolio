@@ -1,12 +1,12 @@
 import React from 'react'
 
-import Inner from '@/components/Transitions/Inner'
+import Curve from '@/components/Transitions/Curve'
 
 const AboutMePage = () => {
   return (
-    <Inner>
+    <Curve>
       <div className='h-screen'>AboutMePage</div>
-    </Inner>
+    </Curve>
   )
 }
 

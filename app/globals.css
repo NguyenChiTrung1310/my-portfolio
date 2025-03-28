@@ -103,3 +103,16 @@ body {
     }
   }
 }
+
+@layer components {
+  .curve {
+    svg {
+      position: fixed;
+      height: calc(100vh + 600px);
+      width: 100vw;
+      pointer-events: none;
+      left: 0;
+      top: 0;
+    }
+  }
+}

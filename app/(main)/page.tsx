@@ -1,9 +1,9 @@
-import Inner from '@/components/Transitions/Inner'
+import Curve from '@/components/Transitions/Curve'
 
 export default function Home() {
   return (
-    <Inner>
+    <Curve>
       <div className='h-screen'>Home</div>
-    </Inner>
+    </Curve>
   )
 }

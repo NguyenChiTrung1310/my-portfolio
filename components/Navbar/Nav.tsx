@@ -45,7 +45,13 @@ const NavLink = ({link, index, toggleMenu}: {link: NavLinkType; index: number} &
       ref={scope}
       className='nav-link-container group flex-center cursor-pointer border-t border-white py-3 perspective-[120px] perspective-origin-bottom'
     >
-      <Link onClick={toggleMenu} className='w-full text-4xl font-medium text-white no-underline' href={link.href}>
+      <Link
+        onClick={() => {
+          if (pathname !== link.href) toggleMenu()
+        }}
+        className='w-full text-4xl font-medium text-white no-underline'
+        href={link.href}
+      >
         <motion.div custom={index} variants={perspectiveVariants} initial='initial' animate='enter' exit='exit' className='w-full'>
           <span className='flex items-center'>
             {link.title}{' '}
