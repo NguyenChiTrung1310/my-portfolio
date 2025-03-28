@@ -108,3 +108,20 @@ export const translate = {
     transition: {duration: 0.75, ease: [0.76, 0, 0.24, 1]},
   },
 }
+
+export const translateBg = {
+  initial: {
+    top: '0',
+  },
+  enter: {
+    top: '-100vh',
+    transition: {duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1]},
+    transitionEnd: {
+      top: '100vh',
+    },
+  },
+  exit: {
+    top: '0', // Keep moving ahead instead of resetting back
+    transition: {duration: 0.75, ease: [0.76, 0, 0.24, 1]},
+  },
+}

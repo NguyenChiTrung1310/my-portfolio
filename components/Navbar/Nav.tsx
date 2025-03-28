@@ -12,7 +12,7 @@ interface Props {
   toggleMenu: () => void
 }
 
-type NavLinkType = {title: string; href: string; description: string}
+type NavLinkType = {title: string; href: string; description: string; image: string}
 
 const NavLink = ({link, index, toggleMenu}: {link: NavLinkType; index: number} & Props) => {
   const pathname = usePathname()
@@ -63,7 +63,7 @@ const NavLink = ({link, index, toggleMenu}: {link: NavLinkType; index: number} &
           </span>
 
           <div ref={outer} className='pointer-events-none absolute flex h-full w-full overflow-hidden'>
-            <div ref={inner} className='absolute top-full flex h-full bg-black whitespace-nowrap'>
+            <div ref={inner} className='absolute top-full flex h-full bg-white whitespace-nowrap'>
               {[...Array(2)].map((_, index) => {
                 return <SliderContent key={`content_${index}`} link={link} />
               })}
@@ -78,13 +78,13 @@ const NavLink = ({link, index, toggleMenu}: {link: NavLinkType; index: number} &
 const SliderContent = ({link}: {link: NavLinkType}) => {
   return (
     <div className='slider-content relative flex items-center opacity-0 group-hover:opacity-100'>
-      <p className='text-primary text-2xl font-medium'>{link.description}</p>
-      <div className='relative mx-10 flex h-12 w-24 overflow-hidden rounded-xl'>
-        <Image src='/haha.jpg' fill alt='image text' className='object-cover' />
+      <p className='text-2xl font-medium text-black'>{link.description}</p>
+      <div className='relative mx-10 flex h-12 w-32 overflow-hidden rounded-3xl'>
+        <Image src={link.image} fill alt={link.title} className='object-cover' />
       </div>
-      <p className='text-primary text-2xl font-medium'>{link.description}</p>
-      <div className='relative mx-10 flex h-12 w-24 overflow-hidden rounded-xl'>
-        <Image src='/haha.jpg' fill alt='image text' className='object-cover' />
+      <p className='text-2xl font-medium text-black'>{link.description}</p>
+      <div className='relative mx-10 flex h-12 w-32 overflow-hidden rounded-3xl'>
+        <Image src={link.image} fill alt={link.title} className='object-cover' />
       </div>
     </div>
   )
