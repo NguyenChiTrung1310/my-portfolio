@@ -1,5 +1,9 @@
-import {motion} from 'motion/react'
-import React from 'react'
+import {motion, useAnimate} from 'motion/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, {useRef} from 'react'
+
+import {perspective, slideIn} from './motion'
 
 export const links = [
   {title: 'About Me', href: '/'},
@@ -14,68 +18,75 @@ export const footerLinks = [
   {title: 'Github', href: '/'},
 ]
 
-export const perspective = {
-  initial: {
-    opacity: 0,
-    rotateX: 120,
-    translateY: 90,
-    translateX: -40,
-  },
-  enter: (i: number) => ({
-    opacity: 1,
-    rotateX: 0,
-    translateY: 0,
-    translateX: 0,
-    transition: {
-      duration: 0.65,
-      delay: 0.5 + i * 0.1,
-      ease: [0.215, 0.61, 0.355, 1],
-      opacity: {duration: 0.35, delay: 0.4},
-    },
-  }),
-  exit: {
-    opacity: 0,
-    transition: {duration: 0.5, type: 'linear', ease: [0.76, 0, 0.24, 1]},
-  },
+const NavLink = ({title, href, index}: {title: string; href: string; index: number}) => {
+  const [scope, animate] = useAnimate()
+  const outer = useRef(null)
+  const inner = useRef(null)
+
+  const animateIn = async (e: any) => {
+    const bounds = e.target.getBoundingClientRect()
+    const direction = e.clientY < bounds.top + bounds.height / 2 ? -1 : 1
+
+    await animate(outer.current, {top: `${direction * 100}%`}, {duration: 0})
+    await animate(inner.current, {top: `${-1 * direction * 100}%`}, {duration: 0})
+
+    animate([outer.current, inner.current], {top: '0%'}, {duration: 0.3})
+  }
+
+  const animateOut = (e: any) => {
+    const bounds = e.target.getBoundingClientRect()
+    const direction = e.clientY < bounds.top + bounds.height / 2 ? -1 : 1
+
+    animate(outer.current, {top: `${direction * 100}%`}, {duration: 0.3})
+    animate(inner.current, {top: `${-1 * direction * 100}%`}, {duration: 0.3})
+  }
+
+  return (
+    <motion.div
+      onMouseEnter={animateIn}
+      onMouseLeave={animateOut}
+      ref={scope}
+      className='nav-link-container flex-center cursor-pointer border-t border-white perspective-[120px] perspective-origin-bottom'
+    >
+      <motion.div custom={index} variants={perspective} initial='initial' animate='enter' exit='exit' className='w-full'>
+        <Link className='text-4xl font-medium text-white no-underline' href={href}>
+          {title}
+        </Link>
+
+        <div ref={outer} className='outer'>
+          <div ref={inner} className='inner'>
+            {[...Array(2)].map((_, index) => {
+              return <SliderContent key={index} />
+            })}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
 }
 
-export const slideIn = {
-  initial: {
-    opacity: 0,
-    y: 20,
-  },
-  enter: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      delay: 0.75 + i * 0.1,
-      ease: [0.215, 0.61, 0.355, 1],
-    },
-  }),
-  exit: {
-    opacity: 0,
-    transition: {duration: 0.5, type: 'tween', ease: 'easeInOut'},
-  },
+const SliderContent = () => {
+  return (
+    <div className='container'>
+      <div className='imageContainer'>
+        <Image src='/haha.jpg' fill alt='image text' />
+      </div>
+      <p>H HAHA OKOK MAMA</p>
+      <div className='imageContainer'>
+        <Image src='/haha.jpg' fill alt='image text' />
+      </div>
+      <p>H HAHA OKOK MAMA</p>
+    </div>
+  )
 }
 
 const Nav = () => {
   return (
     <div className='box-border flex h-full flex-col justify-between pt-24 pr-10 pb-12 pl-10'>
       <div className='flex flex-col gap-2.5'>
-        {links.map((link, i) => {
-          const {title, href} = link
-
-          return (
-            <div key={`b_${i}`} className='perspective-[120px] perspective-origin-bottom'>
-              <motion.div custom={i} variants={perspective} initial='initial' animate='enter' exit='exit'>
-                <a className='text-4xl font-medium text-white no-underline' href={href}>
-                  {title}
-                </a>
-              </motion.div>
-            </div>
-          )
-        })}
+        {links.map((link, i) => (
+          <NavLink key={`b_${i}`} {...link} index={i} />
+        ))}
       </div>
 
       <motion.div className='flex flex-wrap gap-6'>
