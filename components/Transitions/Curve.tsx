@@ -73,17 +73,8 @@ const SVG = ({height, width}: any) => {
     `
 
   return (
-    <motion.svg {...anim(translate)} xmlns='http://www.w3.org/2000/svg'>
-      {/* Gradient Definition */}
-      <defs>
-        <linearGradient id='gradient' x1='0%' y1='0%' x2='100%' y2='100%'>
-          <stop offset='0%' stopColor='#ffffff' />
-          <stop offset='100%' stopColor='#171717' />
-        </linearGradient>
-      </defs>
-
-      {/* Animated Path with Gradient Fill */}
-      <motion.path {...anim(curve(initialPath, targetPath))} fill='url(#gradient)' />
+    <motion.svg {...anim(translate)}>
+      <motion.path {...anim(curve(initialPath, targetPath))} fill='#56b8ff' />
     </motion.svg>
   )
 }
