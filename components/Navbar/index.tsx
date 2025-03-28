@@ -4,7 +4,7 @@ import {AlignRight, X} from 'lucide-react'
 import {AnimatePresence, motion} from 'motion/react'
 import {ReactNode, useState} from 'react'
 
-import {menuVariants} from './motion'
+import {menuVariants} from './motionVariants'
 import Nav from './Nav'
 
 const Navbar = () => {
@@ -15,8 +15,8 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='w-full pb-[72px]'>
-      <div className='fixed top-4 right-4'>
+    <nav className='w-full'>
+      <div className='fixed top-4 right-4 z-50'>
         <motion.div
           whileHover={{
             width: 120,

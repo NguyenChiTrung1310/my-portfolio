@@ -6,7 +6,7 @@ import {usePathname} from 'next/navigation'
 import React, {useRef} from 'react'
 
 import {footerLinks, links} from './data'
-import {perspectiveVariants, slideInVariants} from './motion'
+import {perspectiveVariants, slideInVariants} from './motionVariants'
 
 interface Props {
   toggleMenu: () => void

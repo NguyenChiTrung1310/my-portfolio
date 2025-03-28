@@ -1,3 +1,9 @@
+import Inner from '@/components/Transitions/Inner'
+
 export default function Home() {
-  return <section className=''>Home</section>
+  return (
+    <Inner>
+      <div className='h-screen'>Home</div>
+    </Inner>
+  )
 }

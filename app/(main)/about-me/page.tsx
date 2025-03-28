@@ -1,7 +1,13 @@
 import React from 'react'
 
+import Inner from '@/components/Transitions/Inner'
+
 const AboutMePage = () => {
-  return <div>AboutMePage</div>
+  return (
+    <Inner>
+      <div className='h-screen'>AboutMePage</div>
+    </Inner>
+  )
 }
 
 export default AboutMePage

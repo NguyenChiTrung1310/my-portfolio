@@ -1,18 +1,14 @@
 'use client'
-import {AnimatePresence, motion} from 'motion/react'
 import React, {PropsWithChildren} from 'react'
 
+import PageAnimatePresence from '@/components/HOC/PageAnimatePresence'
 import Navbar from '@/components/Navbar'
 
 const Layout: React.FC<PropsWithChildren> = ({children}) => {
   return (
     <div>
-      <AnimatePresence mode='wait'>
-        <motion.div className='h-full'>
-          <Navbar />
-          {children}
-        </motion.div>
-      </AnimatePresence>
+      <Navbar />
+      <PageAnimatePresence>{children}</PageAnimatePresence>
     </div>
   )
 }
