@@ -5,7 +5,7 @@ import {usePathname} from 'next/navigation'
 import React, {PropsWithChildren, useEffect, useState} from 'react'
 
 import {links} from '../Navbar/data'
-import {curve, text, translate, translateBg} from './motionVariants'
+import {curve, text, translate} from './motionVariants'
 
 const anim = (variants: any) => {
   return {
@@ -49,60 +49,9 @@ const Curve: React.FC<PropsWithChildren> = ({children}) => {
       <motion.p className='absolute top-1/2 left-1/2 z-10 -translate-x-1/2 transform text-center text-5xl text-white' {...anim(text)}>
         {activeLink?.title}
       </motion.p>
-      {dimensions.width != null && (
-        <SVG {...dimensions} />
-        // <BackgroundImg activeLink={activeLink} {...dimensions} />
-      )}
+      {dimensions.width != null && <SVG {...dimensions} />}
       {children}
     </div>
-  )
-}
-
-const BackgroundImg = ({
-  activeLink,
-  width,
-  height,
-}: {
-  activeLink?: {title: string; href: string; description: string; image: string}
-  height: number | null
-  width: number | null
-}) => {
-  if (!width || !height) return null
-
-  const initialPath = `
-        M0 300
-        Q${width / 2} 0 ${width} 300
-        L${width} ${height + 300}
-        Q${width / 2} ${height + 600} 0 ${height + 300}
-        L0 0
-    `
-
-  const targetPath = `
-        M0 300
-        Q${width / 2} 0 ${width} 300
-        L${width} ${height}
-        Q${width / 2} ${height} 0 ${height}
-        L0 0
-    `
-
-  return (
-    <motion.div {...anim(translateBg)} className='absolute top-0 left-0 h-full w-full'>
-      <motion.div
-        className='absolute top-0 left-0 h-full w-full bg-cover bg-center'
-        style={{
-          height,
-          width,
-          backgroundImage: `url(${activeLink?.image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          clipPath: `path("${initialPath}")`, // Apply initial shape
-        }}
-        animate={{
-          clipPath: `path("${targetPath}")`, // Animate to target shape
-        }}
-        transition={{duration: 0.75, ease: [0.76, 0, 0.24, 1]}} // Smooth transition
-      />
-    </motion.div>
   )
 }
 
@@ -124,8 +73,17 @@ const SVG = ({height, width}: any) => {
     `
 
   return (
-    <motion.svg {...anim(translate)}>
-      <motion.path {...anim(curve(initialPath, targetPath))} fill='#56b8ff' />
+    <motion.svg {...anim(translate)} xmlns='http://www.w3.org/2000/svg'>
+      {/* Gradient Definition */}
+      <defs>
+        <linearGradient id='gradient' x1='0%' y1='0%' x2='100%' y2='100%'>
+          <stop offset='0%' stopColor='#ffffff' />
+          <stop offset='100%' stopColor='#171717' />
+        </linearGradient>
+      </defs>
+
+      {/* Animated Path with Gradient Fill */}
+      <motion.path {...anim(curve(initialPath, targetPath))} fill='url(#gradient)' />
     </motion.svg>
   )
 }
