@@ -1,3 +1,3 @@
 export default function Home() {
-  return <section>Hello</section>
+  return <section className='text-secondary'>Hello</section>
 }

@@ -32,6 +32,7 @@ const eslintConfig = [
       '@typescript-eslint/ban-ts-comment': 'off',
       'jsx-a11y/click-events-have-key-events': 'off',
       'jsx-a11y/no-static-element-interactions': 'off',
+      'import/no-anonymous-default-export': 'off',
       // "react-hooks/exhaustive-deps": "off",
       'no-empty': 'off',
       'react/prop-types': 'off',

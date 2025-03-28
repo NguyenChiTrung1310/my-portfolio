@@ -69,7 +69,7 @@ const Nav = () => {
           return (
             <div key={`b_${i}`} className='perspective-[120px] perspective-origin-bottom'>
               <motion.div custom={i} variants={perspective} initial='initial' animate='enter' exit='exit'>
-                <a className='text-4xl text-white no-underline' href={href}>
+                <a className='text-4xl font-medium text-white no-underline' href={href}>
                   {title}
                 </a>
               </motion.div>
