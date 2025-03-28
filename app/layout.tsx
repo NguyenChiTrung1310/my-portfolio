@@ -1,4 +1,4 @@
-import './globals.scss'
+import './globals.css'
 
 import ReactLenis from 'lenis/react'
 import type {Metadata} from 'next'

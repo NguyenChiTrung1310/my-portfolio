@@ -25,6 +25,7 @@ body {
 
 /* NAVBAR */
 @layer components {
+  /* NAVBAR PANEL */
   .slider-text {
     @apply bg-primary h-full w-full;
 
@@ -77,6 +78,7 @@ body {
     }
   }
 
+  /* NAVBAR MENU LINK */
   .nav-link-container {
     &:hover {
       .outer {

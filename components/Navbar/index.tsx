@@ -4,6 +4,7 @@ import {AlignRight, X} from 'lucide-react'
 import {AnimatePresence, motion} from 'motion/react'
 import {ReactNode, useState} from 'react'
 
+import {menuVariants} from './motion'
 import Nav from './Nav'
 
 const Navbar = () => {
@@ -33,7 +34,7 @@ const Navbar = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div className='bg-primary relative h-[640px] w-[360px]' variants={menu} animate={isActive ? 'open' : 'closed'} initial='closed'>
+        <motion.div className='bg-primary relative h-[640px] w-[480px]' variants={menuVariants} animate={isActive ? 'open' : 'closed'} initial='closed'>
           <AnimatePresence>{isActive && <Nav />}</AnimatePresence>
         </motion.div>
       </div>
@@ -48,26 +49,6 @@ const PerspectiveText = ({icon, label}: {icon: ReactNode; label: string}) => {
       <div className='icon'>{label}</div>
     </div>
   )
-}
-
-const menu = {
-  open: {
-    width: '360px',
-    height: '650px',
-    top: '-8px',
-    right: '-8px',
-    borderRadius: '32px',
-    transition: {duration: 0.75, type: 'tween', ease: [0.76, 0, 0.24, 1]},
-  },
-
-  closed: {
-    width: '48px',
-    height: '48px',
-    top: '0px',
-    right: '0px',
-    borderRadius: '32px',
-    transition: {duration: 0.75, delay: 0.35, type: 'tween', ease: [0.76, 0, 0.24, 1]},
-  },
 }
 
 export default Navbar

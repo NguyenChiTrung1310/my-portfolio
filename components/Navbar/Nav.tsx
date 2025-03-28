@@ -3,22 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, {useRef} from 'react'
 
-import {perspective, slideIn} from './motion'
+import {footerLinks, links} from './data'
+import {perspectiveVariants, slideInVariants} from './motion'
 
-export const links = [
-  {title: 'About Me', href: '/'},
-  {title: 'Projects', href: '/'},
-  {title: 'Expertise', href: '/'},
-]
+type NavLinkType = {title: string; href: string; description: string}
 
-export const footerLinks = [
-  {title: 'Facebook', href: '/'},
-  {title: 'LinkedIn', href: '/'},
-  {title: 'Instagram', href: '/'},
-  {title: 'Github', href: '/'},
-]
-
-const NavLink = ({title, href, index}: {title: string; href: string; index: number}) => {
+const NavLink = ({link, index}: {link: NavLinkType; index: number}) => {
   const [scope, animate] = useAnimate()
   const outer = useRef(null)
   const inner = useRef(null)
@@ -48,15 +38,15 @@ const NavLink = ({title, href, index}: {title: string; href: string; index: numb
       ref={scope}
       className='nav-link-container flex-center cursor-pointer border-t border-white perspective-[120px] perspective-origin-bottom'
     >
-      <motion.div custom={index} variants={perspective} initial='initial' animate='enter' exit='exit' className='w-full'>
-        <Link className='text-4xl font-medium text-white no-underline' href={href}>
-          {title}
+      <motion.div custom={index} variants={perspectiveVariants} initial='initial' animate='enter' exit='exit' className='w-full'>
+        <Link className='text-4xl font-medium text-white no-underline' href={link.href}>
+          {link.title}
         </Link>
 
         <div ref={outer} className='outer'>
           <div ref={inner} className='inner'>
             {[...Array(2)].map((_, index) => {
-              return <SliderContent key={index} />
+              return <SliderContent key={`content_${index}`} link={link} />
             })}
           </div>
         </div>
@@ -65,17 +55,17 @@ const NavLink = ({title, href, index}: {title: string; href: string; index: numb
   )
 }
 
-const SliderContent = () => {
+const SliderContent = ({link}: {link: NavLinkType}) => {
   return (
     <div className='container'>
       <div className='imageContainer'>
         <Image src='/haha.jpg' fill alt='image text' />
       </div>
-      <p>H HAHA OKOK MAMA</p>
+      <p className='text-2xl font-medium'>{link.description}</p>
       <div className='imageContainer'>
         <Image src='/haha.jpg' fill alt='image text' />
       </div>
-      <p>H HAHA OKOK MAMA</p>
+      <p className='text-2xl font-medium'>{link.description}</p>
     </div>
   )
 }
@@ -85,7 +75,7 @@ const Nav = () => {
     <div className='box-border flex h-full flex-col justify-between pt-24 pr-10 pb-12 pl-10'>
       <div className='flex flex-col gap-2.5'>
         {links.map((link, i) => (
-          <NavLink key={`b_${i}`} {...link} index={i} />
+          <NavLink key={`b_${i}`} link={link} index={i} />
         ))}
       </div>
 
@@ -94,7 +84,7 @@ const Nav = () => {
           const {title, href} = link
 
           return (
-            <motion.a className='mt-1' href={href} variants={slideIn} custom={i} initial='initial' animate='enter' exit='exit' key={`f_${i}`}>
+            <motion.a className='mt-1' href={href} variants={slideInVariants} custom={i} initial='initial' animate='enter' exit='exit' key={`f_${i}`}>
               {title}
             </motion.a>
           )

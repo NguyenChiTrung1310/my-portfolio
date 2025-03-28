@@ -1,4 +1,24 @@
-export const perspective = {
+export const menuVariants = {
+  open: {
+    width: '480px',
+    height: '640px',
+    top: '-8px',
+    right: '-8px',
+    borderRadius: '32px',
+    transition: {duration: 0.75, type: 'tween', ease: [0.76, 0, 0.24, 1]},
+  },
+
+  closed: {
+    width: '48px',
+    height: '48px',
+    top: '0px',
+    right: '0px',
+    borderRadius: '32px',
+    transition: {duration: 0.75, delay: 0.35, type: 'tween', ease: [0.76, 0, 0.24, 1]},
+  },
+}
+
+export const perspectiveVariants = {
   initial: {
     opacity: 0,
     rotateX: 120,
@@ -23,7 +43,7 @@ export const perspective = {
   },
 }
 
-export const slideIn = {
+export const slideInVariants = {
   initial: {
     opacity: 0,
     y: 20,
