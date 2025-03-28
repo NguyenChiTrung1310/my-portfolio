@@ -36,15 +36,15 @@ const NavLink = ({link, index}: {link: NavLinkType; index: number}) => {
       onMouseEnter={animateIn}
       onMouseLeave={animateOut}
       ref={scope}
-      className='nav-link-container flex-center cursor-pointer border-t border-white perspective-[120px] perspective-origin-bottom'
+      className='nav-link-container group flex-center cursor-pointer border-t border-white py-3 perspective-[120px] perspective-origin-bottom'
     >
       <motion.div custom={index} variants={perspectiveVariants} initial='initial' animate='enter' exit='exit' className='w-full'>
         <Link className='text-4xl font-medium text-white no-underline' href={link.href}>
           {link.title}
         </Link>
 
-        <div ref={outer} className='outer'>
-          <div ref={inner} className='inner'>
+        <div ref={outer} className='pointer-events-none absolute flex h-full w-full overflow-hidden'>
+          <div ref={inner} className='absolute top-full flex h-full bg-black whitespace-nowrap'>
             {[...Array(2)].map((_, index) => {
               return <SliderContent key={`content_${index}`} link={link} />
             })}
@@ -57,15 +57,15 @@ const NavLink = ({link, index}: {link: NavLinkType; index: number}) => {
 
 const SliderContent = ({link}: {link: NavLinkType}) => {
   return (
-    <div className='container'>
-      <div className='imageContainer'>
-        <Image src='/haha.jpg' fill alt='image text' />
+    <div className='slider-content relative flex items-center opacity-0 group-hover:opacity-100'>
+      <p className='text-primary text-2xl font-medium'>{link.description}</p>
+      <div className='relative mx-10 flex h-12 w-24 overflow-hidden rounded-xl'>
+        <Image src='/haha.jpg' fill alt='image text' className='object-cover' />
       </div>
-      <p className='text-2xl font-medium'>{link.description}</p>
-      <div className='imageContainer'>
-        <Image src='/haha.jpg' fill alt='image text' />
+      <p className='text-primary text-2xl font-medium'>{link.description}</p>
+      <div className='relative mx-10 flex h-12 w-24 overflow-hidden rounded-xl'>
+        <Image src='/haha.jpg' fill alt='image text' className='object-cover' />
       </div>
-      <p className='text-2xl font-medium'>{link.description}</p>
     </div>
   )
 }
@@ -73,7 +73,7 @@ const SliderContent = ({link}: {link: NavLinkType}) => {
 const Nav = () => {
   return (
     <div className='box-border flex h-full flex-col justify-between pt-24 pr-10 pb-12 pl-10'>
-      <div className='flex flex-col gap-2.5'>
+      <div className='flex flex-col'>
         {links.map((link, i) => (
           <NavLink key={`b_${i}`} link={link} index={i} />
         ))}

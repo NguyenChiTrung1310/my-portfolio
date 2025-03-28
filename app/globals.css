@@ -26,7 +26,7 @@ body {
 /* NAVBAR */
 @layer components {
   /* NAVBAR PANEL */
-  .slider-text {
+  .btn-toggle-text {
     @apply bg-primary h-full w-full;
 
     .icon {
@@ -60,7 +60,6 @@ body {
   }
 
   .perspective-icon {
-    @apply flex-center h-full w-full flex-col;
     transform-style: preserve-3d;
     transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
 
@@ -80,60 +79,16 @@ body {
 
   /* NAVBAR MENU LINK */
   .nav-link-container {
-    &:hover {
-      .outer {
-        .container {
-          opacity: 1;
-        }
+    .slider-content {
+      animation: slider 6s linear infinite;
+      transition: opacity 0.3s;
+
+      &:nth-of-type(2) {
+        transition-delay: -4s;
       }
-    }
 
-    .outer {
-      @apply pointer-events-none absolute flex h-full w-full overflow-hidden;
-
-      .inner {
-        @apply absolute top-full flex h-full bg-black whitespace-nowrap;
-
-        .container {
-          @apply relative flex items-center opacity-0;
-
-          animation: slider 6s linear infinite;
-          transition: opacity 0.3s;
-
-          &:nth-of-type(2) {
-            transition-delay: -4s;
-          }
-
-          &:nth-of-type(3) {
-            transition-delay: -6s;
-          }
-
-          .imageContainer {
-            height: 32px;
-            width: 96px;
-            @apply relative flex overflow-hidden;
-
-            border-radius: 3vw;
-            margin-left: 1vw;
-            margin-right: 1vw;
-
-            img {
-              object-fit: cover;
-            }
-          }
-
-          p {
-            @apply text-primary;
-          }
-        }
-      }
-    }
-
-    &:hover {
-      .outer {
-        .container {
-          opacity: 1;
-        }
+      &:nth-of-type(3) {
+        transition-delay: -6s;
       }
     }
   }

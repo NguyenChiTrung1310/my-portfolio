@@ -24,11 +24,11 @@ const Navbar = () => {
           className='absolute top-0 right-0 z-10 h-12 w-12 cursor-pointer overflow-hidden rounded-full'
         >
           <motion.div className='relative h-full w-full' animate={{top: isActive ? '-100%' : '0%'}} transition={{duration: 0.5, type: 'tween', ease: [0.76, 0, 0.24, 1]}}>
-            <div className='slider-text' onClick={toggleMenu}>
+            <div className='btn-toggle-text' onClick={toggleMenu}>
               <PerspectiveText icon={<AlignRight />} label='Menu' />
             </div>
 
-            <div className='slider-text' onClick={toggleMenu}>
+            <div className='btn-toggle-text' onClick={toggleMenu}>
               <PerspectiveText icon={<X />} label='Close' />
             </div>
           </motion.div>
@@ -44,7 +44,7 @@ const Navbar = () => {
 
 const PerspectiveText = ({icon, label}: {icon: ReactNode; label: string}) => {
   return (
-    <div className='perspective-icon'>
+    <div className='perspective-icon flex-center h-full w-full flex-col'>
       <div className='icon'>{icon}</div>
       <div className='icon'>{label}</div>
     </div>
