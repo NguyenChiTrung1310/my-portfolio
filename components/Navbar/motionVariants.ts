@@ -44,7 +44,7 @@ export const perspectiveVariants = {
     opacity: 0,
     rotateX: 90,
     translateY: 90,
-    translateX: -90,
+    translateX: -70,
   },
   enter: (i: number) => ({
     opacity: 1,
@@ -60,7 +60,7 @@ export const perspectiveVariants = {
   }),
   exit: {
     opacity: 0,
-    transition: {duration: 0.5, type: 'linear', ease: [0.76, 0, 0.24, 1]},
+    transition: {duration: 0.5, type: 'linear', ease: [0.76, 0, 0.24, 1], opacity: {delay: 0.4}},
   },
 }
 
@@ -80,6 +80,6 @@ export const slideInVariants = {
   }),
   exit: {
     opacity: 0,
-    transition: {duration: 0.5, type: 'tween', ease: 'easeInOut'},
+    transition: {duration: 0.5, type: 'tween', ease: 'easeInOut', opacity: {delay: 0.4}},
   },
 }
