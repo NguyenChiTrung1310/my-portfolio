@@ -1,22 +1,43 @@
-export const menuVariants = {
+export const toggleMenuVariants = (isTablet: boolean) => ({
   open: {
-    width: '480px',
-    height: '640px',
-    top: '-8px',
-    right: '-8px',
-    borderRadius: '32px',
+    top: '8px',
+    right: '8px',
+    ...(!isTablet && {
+      y: '8px',
+      x: '-8px',
+    }),
+    transition: {duration: 0.4, type: 'tween', ease: [0.76, 0, 0.24, 1]},
+  },
+  closed: {
+    top: '0px',
+    right: '0px',
+    ...(!isTablet && {
+      y: '16px',
+      x: '-16px',
+    }),
+    transition: {duration: 0.8, delay: 0.3, type: 'tween', ease: [0.76, 0, 0.24, 1]},
+  },
+})
+
+export const menuVariants = (isTablet: boolean) => ({
+  open: {
+    width: isTablet ? '480px' : '100vw',
+    height: isTablet ? '640px' : '100vh',
+    top: '0px',
+    right: '0px',
+    borderRadius: isTablet ? '32px' : '0px',
     transition: {duration: 0.75, type: 'tween', ease: [0.76, 0, 0.24, 1]},
   },
 
   closed: {
     width: '48px',
     height: '48px',
-    top: '0px',
-    right: '0px',
+    top: !isTablet ? '16px' : '0px',
+    right: !isTablet ? '16px' : '0px',
     borderRadius: '32px',
     transition: {duration: 0.75, delay: 0.35, type: 'tween', ease: [0.76, 0, 0.24, 1]},
   },
-}
+})
 
 export const perspectiveVariants = {
   initial: {

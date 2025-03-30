@@ -11,6 +11,24 @@ export default {
       screens: {},
     },
     extend: {
+      screens: {
+        /* CUSTOMIZE SCREEN */
+        xs: '528px',
+        xs_max: {max: '527px'},
+        /**************************** */
+
+        /* DEFAULT sm: '640px', */
+        sm_max: {max: '639px'},
+
+        /* DEFAULT md: '768px', */
+        md_max: {max: '767px'},
+
+        /* DEFAULT lg: '1024px', */
+        lg_max: {max: '1023px'},
+
+        /* DEFAULT xl: '1280px', */
+        xl_max: {max: '1279px'},
+      },
       colors: {
         primary: {
           DEFAULT: '#56b8ff',
