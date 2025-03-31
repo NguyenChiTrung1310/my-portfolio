@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <nav className='w-full'>
-      <div className={cn('fixed top-4 right-4 z-50', !isTablet && 'top-0 right-0')}>
+      <div className='fixed top-0 right-0 z-50 sm:top-4 sm:right-4'>
         <motion.div
           whileHover={{width: 120}}
           variants={toggleMenuVariants(isTablet)}

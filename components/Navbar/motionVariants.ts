@@ -2,19 +2,15 @@ export const toggleMenuVariants = (isTablet: boolean) => ({
   open: {
     top: '8px',
     right: '8px',
-    ...(!isTablet && {
-      y: '8px',
-      x: '-8px',
-    }),
+    x: isTablet ? '0px' : '-8px',
+    y: isTablet ? '0px' : '8px',
     transition: {duration: 0.4, type: 'tween', ease: [0.76, 0, 0.24, 1]},
   },
   closed: {
     top: '0px',
     right: '0px',
-    ...(!isTablet && {
-      y: '16px',
-      x: '-16px',
-    }),
+    x: isTablet ? '0px' : '-16px',
+    y: isTablet ? '0px' : '16px',
     transition: {duration: 0.8, delay: 0.3, type: 'tween', ease: [0.76, 0, 0.24, 1]},
   },
 })
