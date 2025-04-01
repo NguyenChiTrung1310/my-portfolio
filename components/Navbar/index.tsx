@@ -22,6 +22,9 @@ const Navbar = () => {
 
   return (
     <nav className='w-full'>
+      {/* Logo */}
+
+      {/* Button Toggle Menu */}
       <div className='fixed top-0 right-0 z-50 sm:top-4 sm:right-4'>
         <motion.div
           whileHover={{width: 120}}
