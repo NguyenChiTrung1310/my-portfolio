@@ -21,9 +21,9 @@ const Navbar = () => {
   const animate = isActive ? 'open' : 'closed'
 
   return (
-    <nav className='w-full'>
+    <nav className='flex w-full items-center'>
       {/* Logo */}
-
+      <div className='font-pp-telegraf pt-6 pl-4 text-4xl leading-none font-normal tracking-[-0.6px]'>TRUNG N.</div>
       {/* Button Toggle Menu */}
       <div className='fixed top-0 right-0 z-50 sm:top-4 sm:right-4'>
         <motion.div

@@ -2,7 +2,7 @@ import './globals.css'
 
 import ReactLenis from 'lenis/react'
 import type {Metadata} from 'next'
-import {Montserrat, Sora} from 'next/font/google'
+import {Montserrat, Sora, Space_Mono} from 'next/font/google'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -10,6 +10,11 @@ const montserrat = Montserrat({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  variable: '--font-sora',
+  weight: ['400', '700'],
+})
 const sora = Sora({
   subsets: ['latin'],
   variable: '--font-sora',
@@ -28,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${montserrat.variable} ${sora.variable} antialiased`}>
+      <body className={`${montserrat.variable} ${sora.variable} ${spaceMono.variable} antialiased`}>
         <ReactLenis root>{children}</ReactLenis>
       </body>
     </html>
