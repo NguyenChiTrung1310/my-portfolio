@@ -42,10 +42,6 @@ const Curve: React.FC<PropsWithChildren> = ({children}) => {
 
   return (
     <div className='curve'>
-      <div
-        style={{opacity: dimensions.width == null ? 1 : 0}}
-        className='bg-primary pointer-events-none fixed top-0 left-0 h-screen w-full transition-opacity delay-75 delay-100 duration-0 ease-linear'
-      />
       <motion.p className='absolute top-1/2 left-1/2 z-10 -translate-x-1/2 transform text-center text-5xl text-white' {...anim(text)}>
         {activeLink?.title}
       </motion.p>
