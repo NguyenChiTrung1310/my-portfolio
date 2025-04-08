@@ -9,9 +9,9 @@ const Layout: React.FC<PropsWithChildren> = ({children}) => {
   return (
     <div>
       <Navbar />
-      <div className='absolute -z-10'>
+      {/* <div className='absolute -z-10'>
         <SpotlightCursor />
-      </div>
+      </div> */}
       <PageAnimatePresence>{children}</PageAnimatePresence>
     </div>
   )
