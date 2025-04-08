@@ -42,7 +42,7 @@ const Curve: React.FC<PropsWithChildren> = ({children}) => {
 
   return (
     <div className='curve'>
-      <motion.p className='absolute top-1/2 left-1/2 z-10 -translate-x-1/2 transform text-center text-5xl text-white' {...anim(text)}>
+      <motion.p className='absolute top-1/2 left-1/2 z-20 -translate-x-1/2 transform text-center text-5xl text-white' {...anim(text)}>
         {activeLink?.title}
       </motion.p>
       {dimensions.width != null && <SVG {...dimensions} />}
@@ -69,7 +69,7 @@ const SVG = ({height, width}: any) => {
     `
 
   return (
-    <motion.svg {...anim(translate)}>
+    <motion.svg {...anim(translate)} className='z-10'>
       <motion.path {...anim(curve(initialPath, targetPath))} fill='#56b8ff' />
     </motion.svg>
   )
