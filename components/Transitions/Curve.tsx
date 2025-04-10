@@ -52,6 +52,9 @@ const Curve: React.FC<PropsWithChildren> = ({children}) => {
 }
 
 const SVG = ({height, width}: any) => {
+  const pathname = usePathname()
+  const activeLink = links.find((item) => item.href === pathname)
+
   const initialPath = `
         M0 300
         Q${width / 2} 0 ${width} 300
@@ -69,8 +72,19 @@ const SVG = ({height, width}: any) => {
     `
 
   return (
-    <motion.svg {...anim(translate)} className='z-10'>
-      <motion.path {...anim(curve(initialPath, targetPath))} fill='#56b8ff' />
+    <motion.svg
+      className='pointer-events-none fixed top-0 left-0 z-10 h-[calc(100vh+600px)] w-full'
+      viewBox={`0 0 ${width} ${height + 600}`}
+      preserveAspectRatio='none'
+      {...anim(translate)}
+    >
+      <defs>
+        <pattern id='imagePattern' width={width} height={height + 600} patternUnits='userSpaceOnUse'>
+          <image href={activeLink?.image} width={width} height={height + 600} preserveAspectRatio='xMidYMid slice' />
+        </pattern>
+      </defs>
+
+      <motion.path {...anim(curve(initialPath, targetPath))} fill='url(#imagePattern)' />
     </motion.svg>
   )
 }
