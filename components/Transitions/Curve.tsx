@@ -73,14 +73,14 @@ const SVG = ({height, width}: any) => {
 
   return (
     <motion.svg
-      className='pointer-events-none fixed top-0 left-0 z-10 h-[calc(100vh+600px)] w-full'
-      viewBox={`0 0 ${width} ${height + 600}`}
+      className='pointer-events-none fixed top-0 left-0 z-10 h-[calc(100vh+400px)] w-full'
+      viewBox={`0 0 ${width} ${height + 400}`}
       preserveAspectRatio='none'
       {...anim(translate)}
     >
       <defs>
-        <pattern id='imagePattern' width={width} height={height + 600} patternUnits='userSpaceOnUse'>
-          <image href={activeLink?.image} width={width} height={height + 600} preserveAspectRatio='xMidYMid slice' />
+        <pattern id='imagePattern' width={width} height={height + 400} patternUnits='userSpaceOnUse'>
+          <image href={activeLink?.image.split('-sm')[0] + '.jpg'} width={width} height={height + 400} preserveAspectRatio='xMidYMid slice' />
         </pattern>
       </defs>
 
