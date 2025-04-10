@@ -66,9 +66,19 @@ const InversionLens: React.FC<Props> = ({src}) => {
           }
         }
       }
+
+      // Reset observer and related states
+      isInView.current = false
+      isMouseInsideContainer.current = false
+      targetRadius.current = 0.0
+      isSetupCompleteRef.current = false
+
+      // Clean up event listeners
+      document.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('scroll', handleScroll)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [src]) // Add `src` as a dependency to reinitialize when it changes
 
   const setupScene = (texture: any) => {
     if (!containerRef.current) return
@@ -119,6 +129,12 @@ const InversionLens: React.FC<Props> = ({src}) => {
     const maxAnisotropy = renderer.capabilities.getMaxAnisotropy()
     texture.anisotropy = maxAnisotropy
 
+    // Remove any existing canvas before appending a new one
+    const existingCanvas = containerRef.current.querySelector('canvas')
+    if (existingCanvas) {
+      containerRef.current.removeChild(existingCanvas)
+    }
+
     containerRef.current.appendChild(renderer.domElement)
 
     const handleResize = () => {
@@ -136,15 +152,15 @@ const InversionLens: React.FC<Props> = ({src}) => {
     return () => window.removeEventListener('resize', handleResize)
   }
 
+  const handleMouseMove = (e: MouseEvent) => {
+    updateCursorState(e.clientX, e.clientY)
+  }
+
+  const handleScroll = () => {
+    updateCursorState(lastMouseX.current, lastMouseY.current)
+  }
+
   const setupEventListeners = () => {
-    const handleMouseMove = (e: MouseEvent) => {
-      updateCursorState(e.clientX, e.clientY)
-    }
-
-    const handleScroll = () => {
-      updateCursorState(lastMouseX.current, lastMouseY.current)
-    }
-
     document.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('scroll', handleScroll)
 
@@ -164,8 +180,6 @@ const InversionLens: React.FC<Props> = ({src}) => {
       observer.observe(containerRef.current)
 
       return () => {
-        document.removeEventListener('mousemove', handleMouseMove)
-        window.removeEventListener('scroll', handleScroll)
         observer.disconnect()
       }
     }
